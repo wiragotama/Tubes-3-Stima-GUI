@@ -16,7 +16,7 @@
 						<a href="home.php"> <font color=#FFA347> Home </font>  </a>
 					</li>
 					<li>
-						<a href="searchResult.php"> <font color="white"> Result </font>  </a>
+						<a href="result.php"> <font color="white"> Result </font>  </a>
 					</li>
 					<li>
 						<a href="credit.php"> <font color="white"> Credit </font> </a>
@@ -27,8 +27,8 @@
 	<?php
 		$file = fopen("configuration.txt","rb");
 		$ht = fgets($file);
-		$key1 = fgets($file);
-		$key2 = fgets($file);
+		$tkey1 = fgets($file);
+		$tkey2 = fgets($file);
 		$batas = fgets($file);
 		$algo = fgets($file);
 		fclose($file);
@@ -36,16 +36,18 @@
 			<form id='submit_form' name='submit_form' action='submitConfiguration.php' onsubmit='return validateForm()' method='get'>
 				<br>
 				<br>
-				<b> Pencarian Twitter </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='harstag' style='padding:2px' type='text' name='harstag' size='18' value='$ht'>
+				<b> Pencarian Twitter </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='harstag' style='padding:2px' type='text' name='harstag' size='18' value='$ht'>
 				<br>
 				<br>
-				<b> <i> Keyword lalu-lintas </i> </b> &nbsp&nbsp&nbsp<input id='lalulintas' style='padding:2px' type='text' name='lalulintas' size='18' value='$key1'>
+				<b> Topik Keluhan </b>
+				<br><br>
+				&nbsp&nbsp&nbsp&nbsp<b> <i> Keyword Preman </i> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='tk1' style='padding:2px' type='text' name='tk1' size='18' value='$tkey1'>
 				<br>
 				<br>
-				<b> <i> Keyword keluhan </i> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='keluhan' style='padding:2px' type='text' name='keluhan' size='18' value='$key2'>
+				&nbsp&nbsp&nbsp&nbsp<b> <i> Keyword Pengemis </i> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='tk2' style='padding:2px' type='text' name='tk2' size='18' value='$tkey2'>
 				<br>
 				<br>
-				<b> <i> Batas pencarian </i> </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='batas' style='padding:2px' type='text' name='batas' size='18' value='$batas'>
+				<b> Batas pencarian </b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input id='batas' style='padding:2px' type='text' name='batas' size='18' value='$batas'>
 				<br>
 				<br>
 				<b> Algoritma </b> <br>";
@@ -69,16 +71,23 @@
 	<script type="text/javascript" LANGUAGE="JavaScript">
 			function validateForm() {
 				var x=document.forms["submit_form"]["harstag"].value;
-				var y=document.forms["submit_form"]["lalulintas"].value;
-				var z=document.forms["submit_form"]["keluhan"].value;
-				var k=document.forms["submit_form"]["algo"].value;
+				var y=document.forms["submit_form"]["tk1"].value;
+				var z=document.forms["submit_form"]["tk2"].value;
 				var l=document.forms["submit_form"]["batas"].value;
+				var k=document.forms["submit_form"]["algo"].value;
 				var value=true;
-				if (x==null || x=="" || y==null || y=="" || z==null || z=="" || k==null || k=="" || l==null || !isNumber(l)) {
-					alert("All configuration must be filled!");
+				if (x==null || x=="" || y==null || y=="" || z==null || z=="" || k==null || k=="") {
+					alert("All configuration must be filled out correctly!");
+					value = false;
+				}
+				if (l==null || l=="" || !isNumber(l)) {
+					alert("Batas pencarian must be number");
 					value = false;
 				}
 				return value;
+			}
+			function isNumber(n) {
+				return !isNaN(parseFloat(n)) && isFinite(n);
 			}
 		</script>
 </body>

@@ -1,5 +1,5 @@
-#aku
-cinta
-kmu
+#infobdg
+bbb
+xxx
 20
-KMP
+Boyer-Moore

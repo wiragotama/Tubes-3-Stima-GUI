@@ -16,7 +16,7 @@
 						<a href="home.php"> <font color="white"> Home </font>  </a>
 					</li>
 					<li>
-						<a href="searchResult.php"> <font color="white"> Result </font>  </a>
+						<a href="result.php"> <font color="white"> Result </font>  </a>
 					</li>
 					<li>
 						<a href="credit.php"> <font color=#FFA347> Credit </font> </a>
